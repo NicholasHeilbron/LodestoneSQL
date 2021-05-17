@@ -1,0 +1,47 @@
+//Question: Which Grill type is more fuel efficient based on sheet A?
+SELECT c1, c2, c3, c4, c5, c6, c7
+FROM GrillType;
+SELECT MIN(c3)
+FROM GrillType;
+
+//Question: Which grill type has more market share?
+select MAX(c4)
+From GrillType;
+SELECT c3, c5
+FROM FoodType;
+
+//Question: Based on the cookoff data, which grill type cost more fuel on a long run?
+SELECT avg(c5) as 'CharcoalAvg'
+FROM FoodType
+where c3 = 'Charcoal';
+SELECT avg(c5) AS 'PropaneAvg'
+From FoodType
+Where c3 = 'Propane';
+
+//Question: Considering that the average American grill owner buys a new grill every three years, 
+//which grill type would cost more based on the fuel cost and initial investment?
+select avg(c5) AS 'CharcoalCost'
+From FoodType
+where c3 = 'Charcoal' 
+union 
+select c7
+from GrillType
+where c1 = 'Charcoal';
+
+select avg(c5) AS 'PropaneCost'
+From FoodType
+where c3 = 'Propane' 
+union 
+select c7
+from GrillType
+where c1 = 'Propane'; 
+
+//Question: Which  grill type is easier to use based on the user satisfaction score?
+//Based on data, which grill is preferred? What factors might play a role?
+SELECT avg(c5)
+FROM Satisfaction
+where c4 = 'Propane';
+
+SELECT avg(c5)
+FROM Satisfaction
+where c4 = 'Charcoal';
